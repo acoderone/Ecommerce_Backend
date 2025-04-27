@@ -3,13 +3,13 @@ package com.Ecommerce.Ecommerce.models;
 import jakarta.persistence.*;
 
 import java.util.List;
-
+@Entity
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private int id;
+    private String id;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     private List<Item> items;
 
     @OneToOne

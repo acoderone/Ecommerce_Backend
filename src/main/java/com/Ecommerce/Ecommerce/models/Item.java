@@ -9,14 +9,14 @@ import lombok.Data;
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private Integer id;
+    private String id;
     private String item_name;
     private String description;
     private Integer price;
     private String category;
     private Integer quantity;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;
 }
