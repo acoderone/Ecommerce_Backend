@@ -1,23 +1,14 @@
-package com.Ecommerce.Ecommerce.models;
+package com.Ecommerce.Ecommerce.dto;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-
+import com.Ecommerce.Ecommerce.models.Cart;
+import com.Ecommerce.Ecommerce.models.Order;
+import com.Ecommerce.Ecommerce.models.Role;
 import java.util.List;
 import java.util.UUID;
 
 
-@Entity
-@AllArgsConstructor
-@NoArgsConstructor
 
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+public class UserRequestDTO {
     private UUID id;
     private String password;
     private String first_name;
@@ -25,13 +16,9 @@ public class User {
     private String phone_number;
     private String email;
     private String address;
-    @Enumerated(EnumType.STRING)
-    private Role role;
-    @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
-    private List<Order> orders;
-    @OneToOne (mappedBy = "user" , cascade = CascadeType.ALL)
-
     private Cart cart;
+    private Role role;
+    private List<Order> orders;
 
     public UUID getId() {
         return id;
@@ -89,6 +76,14 @@ public class User {
         this.address = address;
     }
 
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
     public Role getRole() {
         return role;
     }
@@ -103,13 +98,5 @@ public class User {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
     }
 }
