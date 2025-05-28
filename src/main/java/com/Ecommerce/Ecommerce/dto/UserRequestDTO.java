@@ -15,10 +15,9 @@ public class UserRequestDTO {
     private String last_name;
     private String phone_number;
     private String email;
-    private String address;
-    private Cart cart;
+
     private Role role;
-    private List<Order> orders;
+
 
     public UUID getId() {
         return id;
@@ -68,21 +67,6 @@ public class UserRequestDTO {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
 
     public Role getRole() {
         return role;
@@ -92,11 +76,5 @@ public class UserRequestDTO {
         this.role = role;
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
 }

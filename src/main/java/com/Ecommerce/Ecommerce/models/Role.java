@@ -1,5 +1,5 @@
 package com.Ecommerce.Ecommerce.models;
 
 public enum Role {
-    ADMIN, CUSTOMER
+    ROLE_ADMIN, ROLE_CUSTOMER
 }

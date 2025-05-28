@@ -12,8 +12,6 @@ public class UserResponseDTO {
     private String name;
     private String phone_number;
     private String email;
-    private String address;
-    private Cart cart;
     private Role role;
 
     public UUID getId() {
@@ -48,21 +46,6 @@ public class UserResponseDTO {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
 
     public Role getRole() {
         return role;

@@ -34,9 +34,7 @@ public class UserService {
         userResponseDTO.setId(saved_user.getId());
         userResponseDTO.setName(saved_user.getFirst_name()+" "+saved_user.getLast_name());
         userResponseDTO.setEmail(saved_user.getEmail());
-        userResponseDTO.setAddress(saved_user.getEmail());
-        userResponseDTO.setCart(saved_user.getCart());
-        userResponseDTO.setAddress(saved_user.getAddress());
+
         userResponseDTO.setRole(saved_user.getRole());
         return userResponseDTO;
     }
@@ -44,13 +42,13 @@ public class UserService {
     public User ConvertToEntity(UserRequestDTO user){
       User user_Entity=new User();
       user_Entity.setId(user.getId());
-      user_Entity.setCart(user.getCart());
+
       user_Entity.setEmail(user.getEmail());
-      user_Entity.setAddress(user.getAddress());
+
       user_Entity.setPassword(passwordEncoder.encode(user.getPassword()));
       user_Entity.setFirst_name(user.getFirst_name());
       user_Entity.setLast_name(user.getLast_name());
-      user_Entity.setOrders(user.getOrders());
+
       user_Entity.setRole(user.getRole());
       user_Entity.setPhone_number(user.getPhone_number());
       return user_Entity;
