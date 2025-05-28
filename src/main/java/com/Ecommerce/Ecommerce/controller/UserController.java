@@ -1,5 +1,7 @@
 package com.Ecommerce.Ecommerce.controller;
 
+import com.Ecommerce.Ecommerce.dto.AuthRequestDTO;
+import com.Ecommerce.Ecommerce.dto.AuthResponse;
 import com.Ecommerce.Ecommerce.dto.UserRequestDTO;
 
 import com.Ecommerce.Ecommerce.dto.UserResponseDTO;
@@ -22,5 +24,11 @@ public class UserController {
     public ResponseEntity<UserResponseDTO>register(@RequestBody UserRequestDTO user){
         UserResponseDTO registerUser=userService.registerUser(user);
         return new ResponseEntity<>(registerUser, HttpStatus.ACCEPTED);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<AuthResponse>login(@RequestBody AuthRequestDTO requestDTO){
+        System.out.println(requestDTO.getUsername()+" "+requestDTO.getPassword());
+        return ResponseEntity.ok(userService.loginUser(requestDTO));
     }
 }
