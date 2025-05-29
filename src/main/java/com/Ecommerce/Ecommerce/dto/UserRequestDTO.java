@@ -9,7 +9,7 @@ import java.util.UUID;
 
 
 public class UserRequestDTO {
-    private UUID id;
+    private Integer id;
     private String password;
     private String first_name;
     private String last_name;
@@ -19,11 +19,11 @@ public class UserRequestDTO {
     private Role role;
 
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

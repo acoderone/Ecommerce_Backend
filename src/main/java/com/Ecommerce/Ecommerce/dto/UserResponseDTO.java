@@ -8,17 +8,17 @@ import java.util.UUID;
 
 
 public class UserResponseDTO {
-    private UUID id;
+    private Integer id;
     private String name;
     private String phone_number;
     private String email;
     private Role role;
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

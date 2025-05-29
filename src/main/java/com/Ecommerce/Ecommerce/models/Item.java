@@ -10,8 +10,8 @@ import lombok.Setter;
 
 public class Item {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     private String item_name;
     private String description;
     private Integer price;
@@ -22,11 +22,11 @@ public class Item {
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

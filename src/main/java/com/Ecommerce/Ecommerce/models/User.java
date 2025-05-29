@@ -17,8 +17,8 @@ import java.util.UUID;
 
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String password;
     private String first_name;
     private String last_name;
@@ -33,11 +33,11 @@ public class User {
 
     private Cart cart;
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
