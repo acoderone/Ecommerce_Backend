@@ -8,25 +8,24 @@ import lombok.Setter;
 
 @Entity
 
-public class Item {
+public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String item_name;
     private String description;
     private Integer price;
     private String category;
     private Integer quantity;
-
     @ManyToOne
-    @JoinColumn(name = "cart_id")
+    @JoinColumn(name = "cart_id") // optional: controls FK column name
     private Cart cart;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -70,11 +69,5 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public Cart getCart() {
-        return cart;
-    }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
 }

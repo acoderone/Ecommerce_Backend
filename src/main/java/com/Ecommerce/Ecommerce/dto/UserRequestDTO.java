@@ -9,21 +9,28 @@ import java.util.UUID;
 
 
 public class UserRequestDTO {
-    private Integer id;
+    private Long id;
     private String password;
     private String first_name;
     private String last_name;
     private String phone_number;
     private String email;
-
+    private Cart cart;
     private Role role;
 
+    public Cart getCart() {
+        return cart;
+    }
 
-    public Integer getId() {
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

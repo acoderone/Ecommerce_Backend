@@ -2,11 +2,13 @@ package com.Ecommerce.Ecommerce.service;
 
 import com.Ecommerce.Ecommerce.dto.ProductRequestDTO;
 import com.Ecommerce.Ecommerce.dto.ProductResponseDTO;
-import com.Ecommerce.Ecommerce.models.Item;
+
+import com.Ecommerce.Ecommerce.models.Product;
 import com.Ecommerce.Ecommerce.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,8 +16,8 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
-    public Item convertToEntity(ProductRequestDTO dto){
-        Item item=new Item();
+    public Product convertToEntity(ProductRequestDTO dto){
+        Product item=new Product();
         item.setItem_name(dto.getItem_name());
         item.setCategory(dto.getCategory());
       //  item.setId(dto.getId());
@@ -38,7 +40,7 @@ public class ProductService {
     }
 
     public String deleteProduct(Long id){
-        Optional<Item> item=productRepository.findById(id);
+        Optional<Product> item=productRepository.findById(id);
         if(item.isPresent()){
             productRepository.deleteById(id);
             return "Product deleted";
@@ -46,5 +48,14 @@ public class ProductService {
         return "Product not found";
 
 
+    }
+
+    public List<Product> productList(){
+        return productRepository.findAll();
+    }
+
+    public Product getProduct(Long id){
+        return productRepository.findById(id)
+                .orElseThrow(()->new RuntimeException("Product not found"));
     }
 }

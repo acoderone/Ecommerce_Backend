@@ -4,7 +4,9 @@ import com.Ecommerce.Ecommerce.dto.AuthRequestDTO;
 import com.Ecommerce.Ecommerce.dto.AuthResponse;
 import com.Ecommerce.Ecommerce.dto.UserRequestDTO;
 import com.Ecommerce.Ecommerce.dto.UserResponseDTO;
+import com.Ecommerce.Ecommerce.models.Cart;
 import com.Ecommerce.Ecommerce.models.User;
+import com.Ecommerce.Ecommerce.repository.CartRepository;
 import com.Ecommerce.Ecommerce.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +19,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
 public class UserService {
 
+    @Autowired
+    private CartRepository cartRepository;
     @Autowired
     private CustomUserDetailsService userDetailsService;
     @Autowired
@@ -41,14 +46,21 @@ public class UserService {
         if(find_User.isPresent()){
           throw new RuntimeException("Email already in use");
         }
-        User saved_user=userRepository.save(ConvertToEntity(user));
 
+        User saved_user=userRepository.save(ConvertToEntity(user));
+        Cart cart=new Cart();
+        cart.setUser(saved_user);
+        cart.setItems(new ArrayList<>());
+        Cart saved_Cart=cartRepository.save(cart);
+        saved_user.setCart(saved_Cart);
+        userRepository.save(saved_user);
         UserResponseDTO userResponseDTO=new UserResponseDTO();
         userResponseDTO.setId(saved_user.getId());
         userResponseDTO.setName(saved_user.getFirst_name()+" "+saved_user.getLast_name());
         userResponseDTO.setEmail(saved_user.getEmail());
 
         userResponseDTO.setRole(saved_user.getRole());
+
         return userResponseDTO;
     }
 

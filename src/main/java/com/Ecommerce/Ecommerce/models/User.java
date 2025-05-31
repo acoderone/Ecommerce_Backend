@@ -1,5 +1,6 @@
 package com.Ecommerce.Ecommerce.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,7 +19,7 @@ import java.util.UUID;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String password;
     private String first_name;
     private String last_name;
@@ -29,15 +30,16 @@ public class User {
     private Role role;
     @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
     private List<Order> orders;
-    @OneToOne (mappedBy = "user" , cascade = CascadeType.ALL)
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id", referencedColumnName = "id")
+    @JsonBackReference
     private Cart cart;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
